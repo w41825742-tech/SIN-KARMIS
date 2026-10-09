@@ -1,0 +1,25 @@
+{
+  "name": "sin-karm1s-gaming-space",
+  "version": "2.0.0",
+  "private": true,
+  "description": "SIN KARM1S Gaming Space PWA and Capacitor Android project source",
+  "scripts": {
+    "sync:web": "node scripts/copy-web.mjs",
+    "test": "node scripts/test-project.mjs",
+    "android:add": "npm run sync:web && cap add android && npm run android:min-sdk && npm run android:overlay",
+    "android:sync": "npm run sync:web && cap sync android && npm run android:min-sdk && npm run android:overlay",
+    "android:min-sdk": "node scripts/set-min-sdk.mjs",
+    "android:open": "npm run android:sync && cap open android",
+    "android:build": "npm run android:sync && cd android && ./gradlew assembleDebug",
+    "serve": "npx http-server . -p 8080 -c-1",
+    "android:overlay": "node scripts/install-native-overlay.mjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/core": "^6.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.1",
+    "http-server": "^14.1.1"
+  }
+}
